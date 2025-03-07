@@ -10,13 +10,13 @@ public static class DirectionExtension
     /// <param name="direction">Направление</param>
     /// <returns><see cref="Vector"/> у которого одна из координат имеет единичое значение</returns>
     /// <exception cref="ArgumentNullException"></exception>
-    public static Vector ToVector(this Direction direction)
+    public static Vector ToVector(this Direction direction, int value = 1)
         => direction switch
         {
-            Direction.Left => new() { X = 1, Y = 0 },
-            Direction.Right => new() { X = -1, Y = 0 },
-            Direction.Up => new() { X = 0, Y = 1 },
-            Direction.Down => new() { X = 0, Y = -1 },
+            Direction.Left => new() { X = -value, Y = 0 },
+            Direction.Right => new() { X = value, Y = 0 },
+            Direction.Up => new() { X = 0, Y = -value },
+            Direction.Down => new() { X = 0, Y = value },
             _ => throw new ArgumentNullException()
         };
 
@@ -27,14 +27,14 @@ public static class DirectionExtension
     /// <param name="vector"><see cref="Vector"/> для дальнейшего преобразования, у которого будет одна из координат имеет единичое значение.
     /// В противном случае будет дефолтные значения</param>
     /// <returns> В случае успешного преобразования вернет <see cref="true"/>, в противном случае <see cref="false"/> </returns>
-    public static bool TryToVector(this Direction direction, out Vector vector)
+    public static bool TryToVector(this Direction direction, out Vector vector, int value = 1)
     {
         Vector? vectorOrNull = direction switch
         {
-            Direction.Left => new() { X = 1, Y = 0 },
-            Direction.Right => new() { X = -1, Y = 0 },
-            Direction.Up => new() { X = 0, Y = 1 },
-            Direction.Down => new() { X = 0, Y = -1 },
+            Direction.Left => new() { X = -value, Y = 0 },
+            Direction.Right => new() { X = value, Y = 0 },
+            Direction.Up => new() { X = 0, Y = -value },
+            Direction.Down => new() { X = 0, Y = value },
             _ => null
         };
 

@@ -1,6 +1,6 @@
 ﻿namespace ConsoleEngine.Core
 {
-    public interface ICoreEngine
+    public interface IEngineCore
     {
         void Start();
         void Stop();
